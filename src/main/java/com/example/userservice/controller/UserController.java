@@ -40,7 +40,7 @@ public class UserController {
         return greeting.getMessage();
     }
 
-    @PostMapping("/user")
+    @PostMapping("/users")
     public ResponseEntity createUser(@RequestBody RequestUser user) {
 
         // mapper를 이용 , user -> userDto
