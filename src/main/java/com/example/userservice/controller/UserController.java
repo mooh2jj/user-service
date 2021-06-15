@@ -29,18 +29,19 @@ public class UserController {
         this.env = env;
     }
 
-    @GetMapping("/heath_check")
+    @GetMapping("/user-service/health_check")
     public String status() {
-        return "It's working in User Service";
+        return String.format("It's working in User Service on PORT %s",
+                env.getProperty("local.server.port"));
     }
 
-    @GetMapping("/welcome")
+    @GetMapping("/user-service/welcome")
     public String welcome() {
 //        return env.getProperty("greeting.message");
         return greeting.getMessage();
     }
 
-    @PostMapping("/users")
+    @PostMapping("/user-service/users")
     public ResponseEntity createUser(@RequestBody RequestUser user) {
 
         // mapper를 이용 , user -> userDto
