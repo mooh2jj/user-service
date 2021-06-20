@@ -61,24 +61,24 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
-        @GetMapping("/users")
-        public ResponseEntity<List<ResponseUser>> getUsers(){
-            Iterable<UserEntity> userList = userService.getUserByAll();
+    @GetMapping("/users")
+    public ResponseEntity<List<ResponseUser>> getUsers(){
+        Iterable<UserEntity> userList = userService.getUserByAll();
 
-            List<ResponseUser> result = new ArrayList<>();
-            userList.forEach( v -> {
-                result.add(new ModelMapper().map(v, ResponseUser.class));
-            });
+        List<ResponseUser> result = new ArrayList<>();
+        userList.forEach( v -> {
+            result.add(new ModelMapper().map(v, ResponseUser.class));
+        });
 
-            return ResponseEntity.status(HttpStatus.OK).body(result);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 
-        @GetMapping("/users/{userId}")
-        public ResponseEntity<ResponseUser> getUser(@PathVariable String userId){
-            UserDto userDto = userService.getUserByUserId(userId);
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<ResponseUser> getUser(@PathVariable String userId){
+        UserDto userDto = userService.getUserByUserId(userId);
 
-            ResponseUser returnValue = new ModelMapper().map(userDto, ResponseUser.class);
+        ResponseUser returnValue = new ModelMapper().map(userDto, ResponseUser.class);
 
-            return ResponseEntity.status(HttpStatus.OK).body(returnValue);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(returnValue);
+    }
 }
